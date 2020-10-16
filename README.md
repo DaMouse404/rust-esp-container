@@ -1,4 +1,4 @@
-# Rust ESP compiler container [![Repository on Quay](https://img.shields.io/badge/quay.io-ctron%2Frust--esp-success "Repository on Quay")](https://quay.io/repository/ctron/rust-esp)
+# Rust ESP compiler container ![publish](https://github.com/DaMouse404/rust-esp-container/workflows/publish/badge.svg)
 
 This is a container which can be used to build a Rust project for the ESP32.
 
