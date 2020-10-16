@@ -56,19 +56,18 @@ RUN  git clone \
 # -------------------------------------------------------------------
 
 # llvm-xtensa (xtensa_release_9.0.1)
-ARG LLVM_VERSION="ae26b7e4eb0938601f8a8744ff50c178a3ef0847"
+ARG LLVM_VERSION="esp-10.0.1-20200903"
 ARG LLVM_BASE="${TOOLCHAIN}/llvm"
 ARG LLVM_PATH="${LLVM_BASE}/llvm_xtensa"
 ARG LLVM_BUILD_PATH="${LLVM_BASE}/llvm_build"
 ARG LLVM_INSTALL_PATH="${LLVM_BASE}/llvm_install"
 
 WORKDIR "${LLVM_BASE}"
-RUN mkdir "${LLVM_PATH}" \
+RUN git clone \
+        --recursive --branch ${LLVM_VERSION} --depth 1 \
+        https://github.com/espressif/llvm-project.git \
+        "${LLVM_PATH}" \
  && cd "${LLVM_PATH}" \
- && git init \
- && git remote add origin https://github.com/espressif/llvm-project.git \
- && git fetch --depth 1 origin "${LLVM_VERSION}" \
- && git checkout FETCH_HEAD \
  && mkdir -p "${LLVM_BUILD_PATH}" \
  && cd "${LLVM_BUILD_PATH}" \
  && cmake "${LLVM_PATH}/llvm" \
@@ -97,12 +96,11 @@ ARG RUSTC_BUILD_PATH="${RUSTC_BASE}/rust_build"
 
 WORKDIR "${RUSTC_BASE}"
 RUN git clone \
-        --recursive --single-branch \
+        --recursive --branch ${RUSTC_VERSION} --depth 1 \
         https://github.com/MabezDev/rust-xtensa.git \
         "${RUSTC_PATH}" \
  && mkdir -p "${RUSTC_BUILD_PATH}" \
  && cd "${RUSTC_PATH}" \
- && git reset --hard "${RUSTC_VERSION}" \
  && ./configure \
         --experimental-targets=Xtensa \
         --llvm-root "${LLVM_INSTALL_PATH}" \
