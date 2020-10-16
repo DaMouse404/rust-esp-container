@@ -40,7 +40,7 @@ RUN apt-get update \
 # -------------------------------------------------------------------
 
 # esp-idf framework
-ARG IDF_VERSION="v4.0.1"
+ARG IDF_VERSION="v4.1"
 ARG ESP_BASE="${TOOLCHAIN}/esp"
 ENV IDF_PATH "${ESP_BASE}/esp-idf"
 
