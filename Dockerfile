@@ -89,7 +89,7 @@ RUN git clone \
 # -------------------------------------------------------------------
 
 # rust-xtensa
-ARG RUSTC_VERSION="ace01fc044af7ac0feea0cdebff6be20c2bb9585"
+ARG RUSTC_VERSION="xtensa-v0.2.0"
 ARG RUSTC_BASE="${TOOLCHAIN}/rustc"
 ARG RUSTC_PATH="${RUSTC_BASE}/rust_xtensa"
 ARG RUSTC_BUILD_PATH="${RUSTC_BASE}/rust_build"
