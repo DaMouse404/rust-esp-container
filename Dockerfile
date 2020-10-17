@@ -46,7 +46,7 @@ ENV IDF_PATH "${ESP_BASE}/esp-idf"
 
 WORKDIR "${ESP_BASE}"
 RUN  git clone \
-       --recursive --single-branch -b "${IDF_VERSION}" \
+       --branch "${IDF_VERSION}" --depth 1  \
        https://github.com/espressif/esp-idf.git \
  && cd ${IDF_PATH} \
  && ./install.sh
@@ -64,7 +64,7 @@ ARG LLVM_INSTALL_PATH="${LLVM_BASE}/llvm_install"
 
 WORKDIR "${LLVM_BASE}"
 RUN git clone \
-        --recursive --branch ${LLVM_VERSION} --depth 1 \
+        --branch ${LLVM_VERSION} --depth 1 \
         https://github.com/espressif/llvm-project.git \
         "${LLVM_PATH}" \
  && cd "${LLVM_PATH}" \
@@ -96,7 +96,7 @@ ARG RUSTC_BUILD_PATH="${RUSTC_BASE}/rust_build"
 
 WORKDIR "${RUSTC_BASE}"
 RUN git clone \
-        --recursive --branch ${RUSTC_VERSION} --depth 1 \
+        --branch ${RUSTC_VERSION} --depth 1 \
         https://github.com/MabezDev/rust-xtensa.git \
         "${RUSTC_PATH}" \
  && mkdir -p "${RUSTC_BUILD_PATH}" \
